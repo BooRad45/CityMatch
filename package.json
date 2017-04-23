@@ -1,0 +1,24 @@
+{
+  "name": "citymatch",
+  "version": "1.0.0",
+  "description": "App built with Node and Express to match travelers with their ideal city.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BooRad45/CityMatch.git"
+  },
+  "author": "Brendan Rogers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BooRad45/CityMatch/issues"
+  },
+  "homepage": "https://github.com/BooRad45/CityMatch#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
