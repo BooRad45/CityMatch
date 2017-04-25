@@ -25,13 +25,14 @@ const app = express(); //application instance stored in 'app' variable
 const PORT = 3000;  //storing TCP port in variable so we can bind to it later
 
 
-
+// Serve static content for the app from the "public" directory in the application directory (cwd is current working directory)
+app.use(express.static(process.cwd() + "/app/public"));
 
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({
@@ -39,9 +40,6 @@ app.use(bodyParser.json({
 }));
 
 
-//Import Routes.js and use this for all routing.
-const routes = require('./app/routing/htmlRoutes.js');
-app.use('/', routes);
 
 //GET FUNCTION
 //================================================================
@@ -95,6 +93,8 @@ app.use('/', routes);
 //2 terminals -- one running app and the other to do curl request)
 
 
+//=========ROUTES=========================================
+require("./app/routing/htmlRoutes")(app);
 
 //Starts the server to begin listening
 // =============================================================

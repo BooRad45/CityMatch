@@ -1,14 +1,23 @@
-//Set your dependencies here.
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+//=======DEPENDENCIES==============================
 const path = require('path');
-var router = express.Router();
 
-// use middleware (the only middleware shipped with Express) to do the same thing as app.get
-//serves up static (non-changing html files) that we created with USE
-router.use(express.static('public'));
+//=======ROUTING===================================
+module.exports = function(app) {
 
-module.exports = router;
+	// HTML GET Requests
+    // Below code handles when users "visit" a page.
+    // In each of the below cases the user is shown an HTML page of content
+    // ---------------------------------------------------------------------------
+
+app.get("/survey", function(req, res) {
+        res.sendFile(path.join(__dirname, "/../public/survey.html"));
+    });
+
+// If no matching route is found default to home (this is using middleware of Express 'use')
+    app.use(function(req, res) {
+        res.sendFile(path.join(__dirname, "/../public/index.html"));
+    });
+};
+
 
 
