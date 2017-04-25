@@ -2,6 +2,11 @@
 // *****To issue requests use this format "CURL http://localhost:3000/" ***************
 
 //HOW IT WORKS///
+// 1) data (and logic to manipulate that data) live on our Node server
+// 2) We have "routes" that make that data and logic accessible
+// 3) We use AJAX on those "routes" so we can access the data and push changes on the client
+//(cont.) front-end side
+
 //============================================================================
 //The client (web browser) sends an initial request to our web api server
 //Our server responds with html (index.html page)
@@ -21,8 +26,8 @@ const path = require("path");
 // Sets up the Express App
 // =============================================================
 //on the app object we can call functions that create routes
-const app = express(); //application instance stored in 'app' variable
-const PORT = 3000;  //storing TCP port in variable so we can bind to it later
+var app = express(); //application instance stored in 'app' variable
+var PORT = process.env.PORT || 8080;  //storing TCP port in variable so we can bind to it later
 
 
 // Serve static content for the app from the "public" directory in the application directory (cwd is current working directory)
@@ -32,11 +37,7 @@ app.use(express.static(process.cwd() + "/app/public"));
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.text());
-app.use(bodyParser.json({
-  type: "application/vnd.api+json"
+  extended: false
 }));
 
 
@@ -94,14 +95,16 @@ app.use(bodyParser.json({
 
 
 //=========ROUTES=========================================
+require("./app/routing/apiRoutes.js")(app); //***put this first because you are pulling data to display
+                                            //in html pages*****
 require("./app/routing/htmlRoutes")(app);
 
 //Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {  //the listen function also takes an optional callback function as a
 	//(cont. from above) second argument. This will run once app is ready to receive requests.
-  console.log("App listening on PORT " + PORT); //bind application to TCP port 3000
-}); //Once our web api server is up and ready it will console.log "App listening on PORT 3000"
+  console.log("App listening on PORT " + PORT); //bind application to TCP port
+}); //Once our web api server is up and ready it will console.log "App listening on PORT --"
 
 
 
