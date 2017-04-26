@@ -16,6 +16,11 @@ module.exports = function(app) {
 			res.json(travelerData);
 	});
 
+	app.post('/api/travelers', function(req, res) {
+		travelerData.push(req.body);
+		
+	});
+
 }
 
 

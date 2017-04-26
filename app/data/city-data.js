@@ -1,6 +1,6 @@
 var cityArray = [
 	{ name: "London",
-	  country: "England",
+	  photo: "England",
 	  scores: [
 	 	  "5",
  	 	  "1",
@@ -16,7 +16,7 @@ var cityArray = [
 	},
 
 	{ name: "Berlin",
-	  country: "Germany",
+	  photo: "Germany",
 	  scores: [
 	 	  "1",
  	 	  "1",

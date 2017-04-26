@@ -36,8 +36,10 @@ app.use(express.static(process.cwd() + "/app/public"));
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.json({type: "application/vnd.api+json"}));
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 
 
@@ -97,7 +99,7 @@ app.use(bodyParser.urlencoded({
 //=========ROUTES=========================================
 require("./app/routing/apiRoutes.js")(app); //***put this first because you are pulling data to display
                                             //in html pages*****
-require("./app/routing/htmlRoutes")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 //Starts the server to begin listening
 // =============================================================
