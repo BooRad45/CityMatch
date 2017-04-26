@@ -12,6 +12,11 @@ module.exports = function(app) {
     //(cont.) what page to deliver
     // ---------------------------------------------------------------------------
 
+    app.get("/", function(req, res){ 
+        res.sendFile(path.join(__dirname, "/../public.index.html"));
+
+    });
+
 app.get("/survey", function(req, res) { //shows the survey page when survey is entered
         res.sendFile(path.join(__dirname, "/../public/survey.html"));
     });
